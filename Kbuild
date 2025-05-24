@@ -1,5 +1,6 @@
 ifeq ($(CONFIG_ARCH_CANOE),y)
 dtbo-y += canoe-ipa.dtbo
+dtbo-y += canoe-smem-mailbox.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_SUN),y)
@@ -39,7 +40,7 @@ ifeq ($(CONFIG_ARCH_RAVELIN),y)
 dtbo-y += ravelin-ipa.dtbo
 endif
 
-ifeq ($(CONFIG_ARCH_RAVELIN),y)
+ifeq ($(CONFIG_ARCH_VIENNA),y)
 dtbo-y += vienna-ipa.dtbo
 endif
 
