@@ -70,6 +70,10 @@ ifeq ($(CONFIG_ARCH_MALABAR),y)
 dtbo-y += malabar-ipa.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_LAHAINA),y)
+dtbo-y += lahaina-ipa.dtbo
+endif
+
 always-y	:= $(dtb-y) $(dtbo-y)
 subdir-y	:= $(dts-dirs)
 clean-files	:= *.dtb *.dtbo
