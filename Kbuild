@@ -36,6 +36,14 @@ ifeq ($(CONFIG_ARCH_MONACO),y)
 dtbo-y += monaco-ipa.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_KHAJE),y)
+dtbo-y += khaje-ipa.dtbo
+endif
+
+ifeq ($(CONFIG_ARCH_BENGAL),y)
+dtbo-y += bengal-ipa.dtbo
+endif
+
 ifeq ($(CONFIG_ARCH_RAVELIN),y)
 dtbo-y += ravelin-ipa.dtbo
 endif
@@ -51,6 +59,11 @@ endif
 ifeq ($(CONFIG_ARCH_ALOR),y)
 dtbo-y += alor-ipa.dtbo
 dtbo-y += alor-smem-mailbox.dtbo
+endif
+
+ifeq ($(CONFIG_ARCH_CHORA),y)
+dtbo-y += chora-ipa.dtbo
+dtbo-y += chora-smem-mailbox.dtbo
 endif
 
 always-y	:= $(dtb-y) $(dtbo-y)
