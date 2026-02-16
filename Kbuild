@@ -61,6 +61,15 @@ dtbo-y += alor-ipa.dtbo
 dtbo-y += alor-smem-mailbox.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_CHORA),y)
+dtbo-y += chora-ipa.dtbo
+dtbo-y += chora-smem-mailbox.dtbo
+endif
+
+ifeq ($(CONFIG_ARCH_MALABAR),y)
+dtbo-y += malabar-ipa.dtbo
+endif
+
 always-y	:= $(dtb-y) $(dtbo-y)
 subdir-y	:= $(dts-dirs)
 clean-files	:= *.dtb *.dtbo

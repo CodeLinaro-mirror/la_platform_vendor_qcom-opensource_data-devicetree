@@ -68,7 +68,6 @@
 	/delete-property/ qcom,iommu-dma-addr-pool;
 	qcom,ipa-dma-addr-pool = <0x10000000 0x30000000>;
 	qcom,additional-mapping = <0x0c123000 0x0c123000 0x2000>;
-	qcom,iommu-geometry = <0 0xB0000000>;
 	/delete-property/ qcom,ipa-q6-smem-size;
 	memory-region = <&ipa_smmu_ap_partition>;
 };
