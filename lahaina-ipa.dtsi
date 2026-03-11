@@ -1,27 +1,41 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include "ipa.dtsi"
 
 &ipa_hw {
+	reg =
+			<0x1e00000 0x84000>,
+			<0x1e04000 0x23000>;
+	mboxes = <&qmp_aop 0>;
 	interrupts =
-		<0 654 IRQ_TYPE_LEVEL_HIGH>,
-		<0 432 IRQ_TYPE_LEVEL_HIGH>;
-	qcom,ipa-hw-ver = <23>; /* IPA core version = IPAv5.2 */
-	qcom,ipa-ulso-wa;
-	qcom,gfp-no-retry;
-	/delete-property/ qcom,use-64-bit-dma-mask;
+			<0 654 IRQ_TYPE_LEVEL_HIGH>,
+			<0 432 IRQ_TYPE_LEVEL_HIGH>;
+	memory-regions = <&pil_ipa_gsi_mem>;
+	qcom,ipa-hw-ver = <19>; /* IPA core version = IPAv4.9 */
+
+	/delete-property/ qcom,ipa-endp-delay-wa-v2;
+	qcom,ipa-endp-delay-wa;
+
+	qcom,ipa-cfg-offset = <0x040000>;
+
+	/delete-property/ qcom,tx-poll;
+	/delete-property/ qcom,register-collection-on-crash;
+	/delete-property/ qcom,testbus-collection-on-crash;
+	/delete-property/ qcom,non-tn-collection-on-crash;
+
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,ipa-uc-holb-monitor;
+	/delete-property/ qcom,ulso-supported;
 	qcom,ipa-gen-rx-cmn-page-pool-sz-factor = <2>;
 	qcom,ipa-gen-rx-cmn-temp-pool-sz-factor = <1>;
+
 	qcom,interconnect,num-cases = <5>;
 	qcom,interconnect,num-paths = <3>;
 	interconnects = <&aggre2_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
 		<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
-		<&gem_noc MASTER_APPSS_PROC &cnoc2 SLAVE_IPA_CFG>;
+		<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
 	interconnect-names = "ipa_to_llcc", "llcc_to_ebi1", "appss_to_ipa";
 
 	/* No vote */
@@ -30,26 +44,28 @@
 
 	/* SVS2 */
 	qcom,svs2 =
-	<0 0 0 1900000 0 76800>;
+	<150000 600000 150000 1804000 0 74000>;
+
 	/* SVS */
 	qcom,svs =
-	<1200000 0 1200000 2800000 0 150000>;
+	<625000 1200000 625000 3072000 0 150000>;
 
 	/* NOMINAL */
 	qcom,nominal =
-	<2400000 0 2400000 5500000 0 400000>;
+	<1250000 2400000 1250000 6220800 0 400000>;
 
 	/* TURBO */
 	qcom,turbo =
-	<3600000 0 3600000 5500000 0 400000>;
+	<2000000 3500000 2000000 7219200 0 400000>;
 
 	qcom,bus-vector-names = "MIN", "SVS2", "SVS", "NOMINAL",
 		"TURBO";
+
 	qcom,throughput-threshold = <600 2500 5000>;
 	qcom,scaling-exceptions = <>;
 
-	#address-cells=<1>;
-	#size-cells=<1>;
+	#address-cells = <1>;
+	#size-cells = <1>;
 
 	ipa_smmu_ap_partition: ipa_smmu_ap_partition {
 		iommu-addresses = <&ipa_smmu_ap 0x0 0x20000000>,
@@ -66,10 +82,16 @@
 	/delete-property/ qcom,iommu-dma-addr-pool;
 	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	memory-region = <&ipa_smmu_ap_partition>;
+	iommus = <&apps_smmu 0x5C0 0x0>;
+	qcom,additional-mapping =
+		/* modem tables in IMEM */
+		<0x146BD000 0x146BD000 0x2000>;
+	qcom,iommu-dma = "atomic";
+	qcom,ipa-q6-smem-size = <36864>;
 };
 
 &ipa_smmu_wlan {
-	/delete-property/ dma-coherent;
+	iommus = <&apps_smmu 0x5C1 0x0>;
 };
 
 &ipa_smmu_uc {
@@ -77,8 +99,9 @@
 	/delete-property/ qcom,iommu-dma-addr-pool;
 	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	memory-region = <&ipa_smmu_uc_partition>;
+	iommus = <&apps_smmu 0x5C2 0x0>;
 };
 
 &ipa_smmu_11ad {
-	iommus = <&apps_smmu 0x4A3 0x0>;
+	iommus = <&apps_smmu 0x5C3 0x0>;
 };
