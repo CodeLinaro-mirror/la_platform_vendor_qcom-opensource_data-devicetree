@@ -71,6 +71,10 @@ dtbo-y += malabar-ipa.dtbo
 dtbo-y += malabar-smem-mailbox.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_LAHAINA),y)
+dtbo-y += lahaina-ipa.dtbo
+endif
+
 always-y	:= $(dtb-y) $(dtbo-y)
 subdir-y	:= $(dts-dirs)
 clean-files	:= *.dtb *.dtbo
