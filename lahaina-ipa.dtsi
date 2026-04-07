@@ -14,20 +14,29 @@
 			<0 432 IRQ_TYPE_LEVEL_HIGH>;
 	memory-regions = <&pil_ipa_gsi_mem>;
 	qcom,ipa-hw-ver = <19>; /* IPA core version = IPAv4.9 */
-
-	/delete-property/ qcom,ipa-endp-delay-wa-v2;
 	qcom,ipa-endp-delay-wa;
+	qcom,gsi_wdi_db_polling;
+	qcom,lan-rx-ring-size = <224>;
 
-	qcom,ipa-cfg-offset = <0x040000>;
-
-	/delete-property/ qcom,tx-poll;
+	/delete-property/ qcom,entire-ipa-block-size;
+	/delete-property/ qcom,ipa-cfg-offset;
+	/delete-property/ qcom,ipa-endp-delay-wa-v2;
 	/delete-property/ qcom,register-collection-on-crash;
 	/delete-property/ qcom,testbus-collection-on-crash;
 	/delete-property/ qcom,non-tn-collection-on-crash;
 
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,ipa-uc-holb-monitor;
+	/delete-property/ qcom,ipa-holb-monitor-poll-period;
+	/delete-property/ qcom,ipa-holb-monitor-max-cnt-wlan;
+	/delete-property/ qcom,ipa-holb-monitor-max-cnt-usb;
+	/delete-property/ qcom,ipa-holb-monitor-max-cnt-11ad;
 	/delete-property/ qcom,ulso-supported;
+	/delete-property/ qcom,ulso-ip-id-min-linux-val;
+	/delete-property/ qcom,ulso-ip-id-max-linux-val;
+	/delete-property/ qcom,ulso-ip-id-min-windows-val;
+	/delete-property/ qcom,ulso-ip-id-max-windows-val;
+
 	qcom,ipa-gen-rx-cmn-page-pool-sz-factor = <2>;
 	qcom,ipa-gen-rx-cmn-temp-pool-sz-factor = <1>;
 
