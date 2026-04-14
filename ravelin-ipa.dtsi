@@ -12,6 +12,7 @@
 	qcom,ipa-hw-ver = <23>; /* IPA core version = IPAv5.2 */
 	qcom,ipa-ulso-wa;
 	qcom,gfp-no-retry;
+	/delete-property/ qcom,use-64-bit-dma-mask;
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,ipa-uc-holb-monitor;
 	qcom,ipa-gen-rx-cmn-page-pool-sz-factor = <2>;
@@ -46,6 +47,25 @@
 		"TURBO";
 	qcom,throughput-threshold = <600 2500 5000>;
 	qcom,scaling-exceptions = <>;
+
+	#address-cells=<1>;
+	#size-cells=<1>;
+
+	ipa_smmu_ap_partition: ipa_smmu_ap_partition {
+		iommu-addresses = <&ipa_smmu_ap 0x0 0x20000000>,
+			<&ipa_smmu_ap 0x40000000 0xC0000000>;
+	};
+
+	ipa_smmu_uc_partition: ipa_smmu_uc_partition {
+		iommu-addresses = <&ipa_smmu_uc 0x0 0x20000000>,
+			<&ipa_smmu_uc 0x40000000 0xC0000000>;
+	};
+};
+
+&ipa_smmu_ap {
+	/delete-property/ qcom,iommu-dma-addr-pool;
+	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
+	memory-region = <&ipa_smmu_ap_partition>;
 };
 
 &ipa_smmu_wlan {
@@ -54,6 +74,9 @@
 
 &ipa_smmu_uc {
 	/delete-property/ dma-coherent;
+	/delete-property/ qcom,iommu-dma-addr-pool;
+	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
+	memory-region = <&ipa_smmu_uc_partition>;
 };
 
 &ipa_smmu_11ad {

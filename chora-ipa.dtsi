@@ -16,6 +16,8 @@
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,ipa-uc-holb-monitor;
 
+	/delete-property/ qcom,ulso-supported;
+	qcom,qmp = <&aoss_qmp>;
 	qcom,gfp-no-retry;
 	qcom,interconnect,num-cases = <5>;
 	qcom,interconnect,num-paths = <3>;
@@ -34,7 +36,7 @@
 
 	/* SVS2 */
 	qcom,svs2 =
-		<0 5680000 0 1300000 0 76800>;
+		<0 1000000 0 1300000 0 76800>;
 
 	/* SVS */
 	qcom,svs =
@@ -50,6 +52,8 @@
 
 	qcom,bus-vector-names = "MIN", "SVS2", "SVS", "NOMINAL",
 		"TURBO";
+
+	qcom,throughput-threshold = <600 2500 5000>;
 
 	#address-cells=<2>;
 	#size-cells=<2>;

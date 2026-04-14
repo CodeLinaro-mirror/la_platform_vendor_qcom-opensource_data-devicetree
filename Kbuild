@@ -68,6 +68,11 @@ endif
 
 ifeq ($(CONFIG_ARCH_MALABAR),y)
 dtbo-y += malabar-ipa.dtbo
+dtbo-y += malabar-smem-mailbox.dtbo
+endif
+
+ifeq ($(CONFIG_ARCH_LAHAINA),y)
+dtbo-y += lahaina-ipa.dtbo
 endif
 
 always-y	:= $(dtb-y) $(dtbo-y)
