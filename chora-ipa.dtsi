@@ -16,7 +16,6 @@
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,ipa-uc-holb-monitor;
 
-	/delete-property/ qcom,ulso-supported;
 	qcom,qmp = <&aoss_qmp>;
 	qcom,gfp-no-retry;
 	qcom,interconnect,num-cases = <5>;

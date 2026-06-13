@@ -77,6 +77,10 @@ endif
 
 ifeq ($(CONFIG_ARCH_LAHAINA),y)
 dtbo-y += lahaina-ipa.dtbo
+endif 
+
+ifeq ($(CONFIG_ARCH_BOURTZI),y)
+dtbo-y += bourtzi-ipa.dtbo
 endif
 
 always-y	:= $(dtb-y) $(dtbo-y)
