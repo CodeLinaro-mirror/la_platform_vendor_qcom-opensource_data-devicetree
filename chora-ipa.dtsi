@@ -18,6 +18,7 @@
 
 	qcom,qmp = <&aoss_qmp>;
 	qcom,gfp-no-retry;
+	qcom,gemnoc-ddr-init;
 	qcom,interconnect,num-cases = <5>;
 	qcom,interconnect,num-paths = <3>;
 	qcom,wan-rx-ring-size = <128>;

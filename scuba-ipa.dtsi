@@ -8,7 +8,7 @@
 &ipa_hw {
 	reg =
 		<0x5800000 0x34000>,
-		 <0x5804000 0x28000>;
+		<0x5804000 0x28000>;
 	qcom,ipa-hw-ver = <16>; /* IPA core version = IPAv4.2 */
 	qcom,ipa-fltrt-not-hashable;
 	qcom,smmu-fast-map;
@@ -50,7 +50,7 @@
 	qcom,iommu-dma = "atomic";
 	/delete-property/ qcom,ipa-q6-smem-size;
 	/delete-property/ qcom,iommu-dma-addr-pool;
-	qcom,ipa-dma-addr-pool = <>;
+	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	/* modem tables in IMEM */
 	qcom,additional-mapping = <0x0c123000 0x0c123000 0x2000>;
 	memory-region = <&ipa_smmu_ap_partition>;
@@ -66,7 +66,7 @@
 &ipa_smmu_uc {
 	iommus = <&apps_smmu 0x0142 0x0>;
 	/delete-property/ qcom,iommu-dma-addr-pool;
-	qcom,ipa-dma-addr-pool = <>;
+	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	/delete-property/ qcom,iommu-dma;
 	memory-region = <&ipa_smmu_uc_partition>;
 };
