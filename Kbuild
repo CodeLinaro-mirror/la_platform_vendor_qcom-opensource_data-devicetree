@@ -40,6 +40,10 @@ ifeq ($(CONFIG_ARCH_KHAJE),y)
 dtbo-y += khaje-ipa.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_SCUBA),y)
+dtbo-y += scuba-ipa.dtbo
+endif
+
 ifeq ($(CONFIG_ARCH_BENGAL),y)
 dtbo-y += bengal-ipa.dtbo
 endif
