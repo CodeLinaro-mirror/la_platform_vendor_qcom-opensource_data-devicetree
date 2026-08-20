@@ -16,6 +16,7 @@
 	/delete-property/ qcom,wan-use-skb-page;
 	/delete-property/ qcom,rmnet-ll-enable;
 	/delete-property/ qcom,tx-wrapper-cache-max-size;
+	/delete-property/ qcom,ipa-uc-holb-monitor;
 	qcom,ipa-config-is-iot;
 	qcom,interconnect,num-cases = <5>;
 	qcom,interconnect,num-paths = <3>;
