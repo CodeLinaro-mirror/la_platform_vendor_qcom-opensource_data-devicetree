@@ -10,6 +10,7 @@
 	reg = <0x0 0x3e00000 0x0 0x84000>,
 		<0x0 0x3e04000 0x0 0xfc000>;
 
+	/delete-property/ qcom,ipa-uc-holb-monitor;
 	qcom,interconnect,num-cases = <5>;
 	qcom,interconnect,num-paths = <3>;
 	qcom,ipa-wdi-opt-dpath;
