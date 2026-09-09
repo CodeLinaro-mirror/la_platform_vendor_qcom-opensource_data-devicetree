@@ -9,7 +9,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/interconnect/qcom,diwali.h>
-#include <dt-bindings/clock/qcom,gcc-diwali.h>
+#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 #include <dt-bindings/clock/qcom,rpmh.h>
 #include "diwali-ipa.dtsi"
 
