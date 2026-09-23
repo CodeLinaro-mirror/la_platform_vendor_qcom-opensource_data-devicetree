@@ -69,6 +69,7 @@
 
 &ipa_smmu_wlan {
 	iommus = <&apps_smmu 0x5C1 0x0>;
+	qcom,iommu-dma = "fastmap";
 };
 
 &ipa_smmu_uc {
@@ -76,6 +77,7 @@
 	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	memory-region = <&ipa_smmu_uc_partition>;
 	iommus = <&apps_smmu 0x5C2 0x0>;
+	qcom,iommu-dma = "fastmap";
 };
 
 &ipa_smmu_11ad {
