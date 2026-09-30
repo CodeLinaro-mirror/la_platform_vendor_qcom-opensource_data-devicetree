@@ -66,11 +66,12 @@
 	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	memory-region = <&ipa_smmu_ap_partition>;
 	qcom,ipa-q6-smem-size = <36864>;
-        qcom,iommu-dma = "fastmap";
+	qcom,iommu-dma = "fastmap";
 };
 
 &ipa_smmu_wlan {
 	/delete-property/ dma-coherent;
+	qcom,iommu-dma = "fastmap";
 };
 
 &ipa_smmu_uc {
@@ -78,6 +79,7 @@
 	qcom,ipa-dma-addr-pool = <0x20000000 0x20000000>;
 	memory-region = <&ipa_smmu_uc_partition>;
 	/delete-property/ dma-coherent;
+	qcom,iommu-dma = "fastmap";
 };
 
 &ipa_smmu_11ad {
