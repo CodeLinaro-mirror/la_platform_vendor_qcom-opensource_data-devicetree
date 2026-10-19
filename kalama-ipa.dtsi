@@ -6,6 +6,7 @@
 #include "ipa.dtsi"
 
 &ipa_hw {
+        /delete-property/ qcom,ipa-uc-holb-monitor;
         qcom,interconnect,num-cases = <5>;
         qcom,interconnect,num-paths = <3>;
         interconnects = <&aggre2_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
